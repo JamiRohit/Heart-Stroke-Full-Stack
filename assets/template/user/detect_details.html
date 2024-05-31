@@ -1,0 +1,297 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Stroke Detection</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'user/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'user/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'user/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'user/css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'user/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/jquery.timepicker.css' %}">
+
+    
+    <link rel="stylesheet" href="{% static 'user/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/style.css' %}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  </head>
+  <body>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+            title: "Success!",
+            text: "{{message}}",
+            icon: "success",
+            button: "OK",
+        });
+    </script>
+    
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <script>swal({
+            title: "Warning :)",
+            text: "{{message}}",
+            icon: "warning",
+            button: "OK",
+         
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <script>swal({
+            title: "info :)",
+            text: "{{message}}",
+            icon: "info",
+            button: "OK",
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <script>swal({
+            title: "error :)",
+            text: "{{message}}",
+            icon: "error",
+            button: "OK",
+        });
+    </script>
+    {% endif %}
+    {% endfor %}
+  {% endif %}
+  <nav class="navbar py-4 navbar-expand-lg ftco_navbar navbar-light bg-light flex-row">
+    <div class="container">
+      <div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
+        <div class="col-lg-3 pr-4 align-items-center">
+          <a class="navbar-brand" href="{% url "user_index" %}"><span>Stroke</span>Detection</a>
+        </div>
+        <div class="col-lg-9 d-none d-md-block">
+          <div class="row d-flex">
+            <div class="col-md-4 pr-4 d-flex topper align-items-center">
+              <div class="icon bg-white mr-2 d-flex justify-content-center align-items-center"><span class="icon-map"></span></div>
+              <span class="text">Address: Codebook,LB Nager Hyderabad Telangana ,India </span>
+            </div>
+            <div class="col-md pr-4 d-flex topper align-items-center">
+              <div class="icon bg-white mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+              <span class="text">Mail: info@codebook.in</span>
+              
+            </div>
+            <div class="col-md pr-4 d-flex topper align-items-center">
+            <div class="icon bg-white mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+              <span class="text">Phone:8555887986</span>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container d-flex align-items-center">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+		  
+	      <p class="button-custom order-lg-last mb-0"><a href="{% url "user_index" %}" class="btn btn-secondary py-2 px-3">Log Out</a></p>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav mr-auto">
+	        	<li class="nav-item"><a href="{% url "user_dashboard" %}" class="nav-link">Dashboard</a></li>
+              <li class="nav-item"><a href="{% url "user_detect" %}" class="nav-link pl-0">Detect Stroke</a></li>
+              <li class="nav-item"><a href="{% url "user_myprofile" %}" class="nav-link">My Profile</a></li>
+
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+    <!-- END nav -->
+    
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('../../static/user/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+              <h1 class="mb-2 bread"> Stroke Detection Result</h1>
+              <p class="breadcrumbs"><span class="mr-2"><a href="{% url "user_dashboard" %}">Dashboard<i class="ion-ios-arrow-forward"></i></a></span> <span>Stroke Detection Result <i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <div class="d-flex ">
+        <div class="col-md-6">
+            <p class="ml-auto text-center" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 40px; margin-top:100px;">Predict Graph </p>
+            <canvas id="myChart" style="width:100%;max-width:600px;" class="m-auto mb-5"></canvas>
+            <script>
+                var xValues = ["Accuracy", "Recall", "Precision", "F1_Score","Specificity","Sensitivity"];
+                var yValues = [{{accc}}, {{call}}, {{pre}}, {{f1}}, {{spe}}, {{sen}}, 0];
+                var transparentColor = "rgba(185, 39, 61, 0.3)"; // Adjust the alpha (4th value) for transparency
+                var barColors = [
+                "rgba(185, 29, 71, 0.5)",
+                "rgba(0, 171, 169, 0.5)",
+                "rgba(43, 87, 151, 0.5)",
+                "rgba(30, 113, 69, 0.5)",
+                ];
+                new Chart("myChart", {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                    },
+                });
+            </script>
+            </div>
+    
+        <div class="col-md-2 card justify-content-start" style='width:20rem; height:22rem;margin-top:14rem'>
+            <div class="card-body" style='margin-top:1rem'>
+                <div class="d-flex ml-3 mt-4">
+                    <h6>Accuracy: </h6>
+                    <p>{{accc}}%</p>
+                </div>
+                <div class="d-flex ml-3">
+                    <h6>Recoll: </h6>
+                    <p>{{call}}%</p>
+                </div>
+                <div class="d-flex ml-3">
+                    <h6>Precision: </h6>
+                    <p>{{pre}}%</p>
+                </div>
+                <div class="d-flex ml-3">
+                    <h6>F1_Score: </h6>
+                    <p>{{f1}}%</p>
+                </div>
+                <div class="d-flex ml-3">
+                  <h6>Specificity: </h6>
+                  <p>{{spe}}%</p>
+                </div>
+              <div class="d-flex ml-3">
+                <h6>Sensitivity: </h6>
+                <p>{{sen}}%</p>
+              </div>
+            </div>
+        </div>
+        
+        <div class=" col-md-4 container d-flex" style='width:20rem; height:35rem;margin-top:14rem'>
+            <div class="row justify-content-center ">
+                <div class="col-md-7 ">
+                    {% if res == 0 %}
+                    <img src="{% static 'user/images/wrng.gif' %}" alt="Round Image" class="img-fluid rounded-circle">
+                    <h2>Stroke_Not_Detected</h2>
+                    {% else %}
+                    <img src="{% static 'user/images/right.jpg' %}" alt="Round Image" class="img-fluid rounded-circle">
+                    <h2>Stroke_Detected</h2>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+ 
+
+      <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+          <div class="row mb-5">
+            <div class="col-md">
+              <div class="ftco-footer-widget mb-5">
+                <h2 class="ftco-heading-2 logo">Stroke<span>Dectection</span></h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+          <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+          <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+          <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+          <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+          </ul>
+              </div>
+             
+            </div>
+            <div class="col-md">
+              <div class="ftco-footer-widget mb-5 ml-md-4">
+                <h2 class="ftco-heading-2">Links</h2>
+                <ul class="list-unstyled">
+                  <li><a href="{% url "user_dashboard" %}"><span class="ion-ios-arrow-round-forward mr-2"></span>Dashboard</a></li>
+                  <li><a href="{% url "user_detect" %}"><span class="ion-ios-arrow-round-forward mr-2"></span>Detect Stroke</a></li>
+                  <li><a href=" {% url "user_myprofile" %}"><span class="ion-ios-arrow-round-forward mr-2"></span>My Profile</a></li>
+          <li><a href="{% url "user_index" %}"><span class="ion-ios-arrow-round-forward mr-2"></span>Log Out</a></li>
+                </ul>
+              </div>
+            
+            </div>
+            <div class="col-md">
+              <div class="ftco-footer-widget mb-5">
+          <div class="ftco-footer-widget mb-5">
+            <h2 class="ftco-heading-2">Have a Questions?</h2>
+            <div class="block-23 mb-3">
+              <ul>
+              <li><span class="icon icon-map-marker"></span><span class="text">#2nd Floor, Siris Rd, Near L.B Nagar Metro Station Pillar No A1662, Snehapuri Colony, Hyderabad, Telangana 500074</span></li>
+              <li><a href="#"><span class="icon icon-phone"></span><span class="text">8555887986</span></a></li>
+              <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@codebook.in</span></a></li>
+              </ul>
+            </div>
+    
+            
+          </div>
+               
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="ftco-footer-widget mb-5">
+                <h2 class="ftco-heading-2">Subscribe Us!</h2>
+                <form action="#" class="subscribe-form">
+                  <div class="form-group">
+                    <input type="text" class="form-control mb-2 text-center" placeholder="Enter email address">
+                    <input type="submit" value="Subscribe" class="form-control submit px-3">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+  
+              <p>
+          &copy; <a href="#">Stroke Detection</a>, All Right Reserved.
+          <i class="icon-heart" aria-hidden="true"></i> by <a href="https://codebook.in/" target="_blank">Codebook</a>
+   </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      
+    
+  
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  
+  
+    <script src="{% static 'user/js/jquery.min.js' %}"></script>
+    <script src="{% static 'user/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'user/js/popper.min.js' %}"></script>
+    <script src="{% static 'user/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'user/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'user/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'user/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'user/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'user/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'user/js/aos.js' %}"></script>
+    <script src="{% static 'user/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'user/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'user/js/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'user/js/scrollax.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'user/js/google-map.js' %}"></script>
+    <script src="{% static 'user/js/main.js' %}"></script>
+    
+    
+    </body>
+    </html>

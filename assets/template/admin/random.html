@@ -1,0 +1,332 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Stroke Detection</title>
+    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 11]>
+    	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    	<![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="{% static 'admin/images/favicon.ico' %}" type="image/x-icon">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{% static 'admin/css/style.css' %}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    
+
+</head>
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	<!-- [ Pre-loader ] End -->
+	<!-- [ navigation menu ] start -->
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+            title: "Success!",
+            text: "{{message}}",
+            icon: "success",
+            button: "OK",
+        });
+    </script>
+    
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <script>swal({
+            title: "Warning :)",
+            text: "{{message}}",
+            icon: "warning",
+            button: "OK",
+         
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <script>swal({
+            title: "info :)",
+            text: "{{message}}",
+            icon: "info",
+            button: "OK",
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <script>swal({
+            title: "error :)",
+            text: "{{message}}",
+            icon: "error",
+            button: "OK",
+        });
+    </script>
+    {% endif %}
+    {% endfor %}
+  {% endif %}
+	<!-- [ Pre-loader ] End -->
+	<!-- [ navigation menu ] start -->
+	<nav class="pcoded-navbar  ">
+		<div class="navbar-wrapper  ">
+			<div class="navbar-content scroll-div " >
+				
+				<div class="">
+					<div class="main-menu-header">
+						<img class="img-radius" src="{% static 'admin/images/user/avatar-2.jpg'%}" alt="User-Profile-Image">
+						<div class="user-details">
+							<span>Administrator</span>
+						</div>
+					</div>
+					
+				</div>
+				
+				<ul class="nav pcoded-inner-navbar ">
+					<li class="nav-item pcoded-menu-caption">
+						<label>Navigation</label>
+					</li>
+					<li class="nav-item">
+					    <a href="{% url "admin_dashboard" %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+					</li>
+					<li class="nav-item pcoded-menu-caption">
+						<label>Users</label>
+					</li>
+					<li class="nav-item pcoded-hasmenu">
+						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">User Management</span></a>
+						<ul class="pcoded-submenu">
+							<li><a href="{% url "admin_pendinguser" %}">Pending Users</a></li>
+							<li><a href="{% url "admin_manageuser" %}">Manage Users</a></li>
+							
+						</ul>
+					</li>
+
+                    
+					<li class="nav-item pcoded-menu-caption">
+					    <label>Dataset</label>
+					</li>
+                    <li class="nav-item pcoded-hasmenu">
+						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Upload Dataset</span></a>
+						<ul class="pcoded-submenu">
+							<li><a href="{% url "admin_data" %}">Upload Data</a></li>
+							<li><a href="{% url 'admin_viewdata' %}">view Data</a></li>
+							
+						</ul>
+					</li>
+					
+					<li class="nav-item pcoded-menu-caption">
+						<label>Algorithms</label>
+					</li>
+                    <li class="nav-item pcoded-hasmenu">
+						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">Algorithms</span></a>
+						<ul class="pcoded-submenu">
+							<li><a href="{% url "admin_logistic" %}">Logistic Regression Algorithm</a></li>
+                            <li><a href="{% url "admin_svm" %}">SVM Algorithm</a></li>
+							<li><a href="{% url "admin_decision" %}">Decision Tree Algorithm</a></li>
+                            <li><a href="{% url "admin_random" %}">Random Forest Algorithm</a></li>
+							<li><a href="{% url "admin_knn" %}">KNN Algorithm</a></li>
+							<li><a href="{% url "admin_gradient" %}">Gradient Boost Algorithm</a></li>
+							<li><a href="{% url "admin_ada" %}">ADA Boost Algorithm</a></li>
+							<li><a href="{% url "admin_xg" %}">XG Boost Algorithm</a></li>
+                        </ul>
+					</li>
+					
+
+					<!-- <li class="nav-item">
+					    <a href="chart-apex.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Chart</span></a>
+					</li> -->
+					
+					<li class="nav-item pcoded-menu-caption">
+						<label>Graph</label>
+					</li>
+					<li class="nav-item"><a href="{% url "admin_graph" %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Graph Analysis</span></a></li>
+                    <li class="nav-item pcoded-menu-caption">
+						<label></label>
+					</li>
+					<li class="nav-item"><a href="{% url "admin_graph" %}" class="nav-link "><span class="pcoded-micon"><i class=""></i></span><span class="pcoded-mtext"></span></a></li>
+
+				</ul>
+				
+				
+				
+			</div>
+		</div>
+	</nav>
+	<!-- [ navigation menu ] end -->
+    
+	<!-- [ Header ] start -->
+	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark">
+		
+			
+				<div class="m-header">
+					<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+					<a href="#!" class="b-brand">
+						<!-- ========   change your logo hear   ============ -->
+                        <h4 class="text-light">StrokeDetection</h4>
+						<img src="{% static 'admin/images/logo-icon.png'%}" alt="" class="logo-thumb">
+					</a>
+					<a href="#!" class="mob-toggler">
+						<i class="feather icon-more-vertical"></i>
+					</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+                                    
+							</div>
+						</li>
+                        <div class="col">
+										</div>
+										<div class="col">
+											</ul>
+										</div>
+										<div class="col">
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+					
+						<li>
+							<div class="dropdown drp-user">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="feather icon-user"></i>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right profile-notification">
+									<div class="pro-head">
+										<img src="{% static 'admin/images/user/avatar-2.jpg'%}" class="img-radius" alt="User-Profile-Image">
+										<span>Administrator</span>
+										<a href="{% url "user_index" %}" class="dud-logout" title="Logout">
+											<i class="feather icon-log-out"></i>
+										</a>
+									</div>
+									<ul class="pro-body">
+										
+										<li><a href="{% url "user_index" %}" class="dropdown-item"><i class="feather icon-lock"></i> Log Out</a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				
+			
+	</header>
+	<!-- [ Header ] end -->
+	
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+			<div class="page-block">
+				<div class="row align-items-center">
+					<div class="col-md-12">
+						<div class="page-header-title">
+							<h5 class="m-b-10">Random Forest Algorithm</h5>
+						</div>
+						<ul class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index.html"><i class="feather icon-map"></i></a></li>
+							<li class="breadcrumb-item"><a href="#!">Algorithms</a></li>
+							<li class="breadcrumb-item"><a href="#!">Random Forest Algorithm</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+        <!-- [ breadcrumb ] end -->
+		<div class="col-6 text-center m-auto" style="margin-top: 20px;">
+			<div class="row">
+				<div>
+					<h2 style="text-decoration:underline;">Random Forest Algorithm</h2>
+					<a href="{% url 'random_btn' %}">
+						<input class="btn btn-primary mb-4 mt-3" type="button" value="Run Algorithm" style="border-radius: 7px;"/>
+					</a>
+					<div class="col-md-12 tablebg">
+						<div class="card text-center" style="box-shadow: 0 4px 6px rgba(129, 134, 196, 0.9);">
+							<div class="table-responsive pt-3">
+								<table class="table table-striped project-orders-table">
+									<thead>
+										<tr>
+											<th style="text-align:center;">Name of Algorithm</th>
+											<th style="text-align:center;">Accuracy</th>
+											<th style="text-align:center;">Precession</th>
+											<th style="text-align:center;">F1 Score</th>
+											<th style="text-align:center;">Recall</th>
+											<th style="text-align:center;">Specificity</th>
+											<th style="text-align:center;">Sensitivity</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>{{i.Name}}</td>
+											<td>{{i.Accuracy}}</td>
+											<td>{{i.Precession}}</td>
+											<td>{{i.F1_Score}}</td>
+											<td>{{i.Recall}}</td>
+											<td>{{i.Specificity}}</td>
+											<td>{{i.Sensitivity}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="footer">
+			   <p>Copyright © 2023 Designed by <a href="https://codebook.in/">Codebook.</a> All rights reserved.<br><br>
+				 
+			   </p>
+			</div>
+		 </div>
+		<style>
+			.footer {
+				min-height: 65px;
+				background: #fff;
+				margin-top: 30px;
+				box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+				border-radius: 5px;
+				width: 100%;
+			}
+			
+			.footer p {
+				margin: 0;
+				line-height: normal;
+				text-align: center;
+				font-size: 14px;
+				font-weight: 300;
+				color: #214162;
+				padding: 25px 15px;
+			}
+			
+			
+		</style>
+    <!-- Required Js -->
+    <script src="{% static 'admin/js/vendor-all.min.js'%}"></script>
+    <script src="{% static 'admin/js/plugins/bootstrap.min.js'%}"></script>
+    <script src="{% static 'admin/js/pcoded.min.js'%}"></script>
+
+<!-- Apex Chart -->
+<script src="{% static 'admin/js/plugins/apexcharts.min.js'%}"></script>
+
+
+<!-- custom-chart js -->
+<script src="{% static 'admin/js/pages/dashboard-main.js'%}"></script>
+</body>
+
+</html>
