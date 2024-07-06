@@ -164,7 +164,7 @@ Figure 7.14 Run Decision Tree Algorithm
 
 Figure 7.15 Run Random Forest Algorithm
 
-![image](https://github.com/JamiRohit/Heart-Stroke-Full-Stack/assets/101118628/3344ebd5-73d0-456d-9cab-8f50e1339ff0)
+![image](https://github.com/JamiRohit/Heart-Stroke-Full-Stack/assets/101118628/3fcd8523-c704-45b6-9d8c-ae60a3e19567)
 
 
 
