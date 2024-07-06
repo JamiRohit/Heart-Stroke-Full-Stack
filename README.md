@@ -1,5 +1,8 @@
 # **Cardiovascular Stroke Prediction using Machine Learning**
 
+
+
+
 **Screenshots**
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -70,6 +73,7 @@ Figure 7.6.4 Stroke Detection Result 2
 
 Figure 7.7 Admin Login page
  
+![image](https://github.com/JamiRohit/Heart-Stroke-Full-Stack/assets/101118628/f4a26307-9238-40b8-b5ed-afd0f5699eac)
 
 
 
