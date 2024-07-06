@@ -3,7 +3,7 @@
 
 **Project Description**
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Overview**
+**Overview** 
 * The project aims to predict the likelihood of a person developing cardiovascular disease using various machine learning algorithms.
 * The system alerts individuals about potential cardiovascular risks based on the prediction results.
   
